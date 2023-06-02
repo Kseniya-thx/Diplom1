@@ -1,0 +1,38 @@
+﻿@model IEnumerable<WebApplication2.Models.Base>
+
+
+
+<h2>Часто задаваемые вопросы</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Номер вопроса
+            @*@Html.DisplayNameFor(model => model.Question)*@
+        </th>
+        <th>Вопрос
+            @*@Html.DisplayNameFor(model => model.Question1)*@
+        </th>
+        <th>Ответ
+            @*@Html.DisplayNameFor(model => model.Answer)*@
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Answer)
+        </td>
+    </tr>
+}
+
+</table>

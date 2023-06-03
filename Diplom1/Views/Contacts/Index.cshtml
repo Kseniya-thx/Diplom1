@@ -1,0 +1,26 @@
+﻿@model Diplom1.Models.Contact
+@{
+    ViewBag.Title = "Обратная связь";
+}
+
+<h2>Обратная связь</h2>
+
+<form method="post" asp-cotroller="Contacts" asp-action="Check">
+    <label asp-for="Name"></label>
+    <input asp-for="Name" />
+    <span asp-validation-for="Name"></span>
+
+    <label asp-for="Surame"></label>
+    <input asp-for="Surame" />
+    <span asp-validation-for="Surame"></span>
+
+    <label asp-for="Email"></label>
+    <input asp-for="Email" />
+    <span asp-validation-for="Email"></span>
+
+    <label asp-for="Messege"></label>
+    <input asp-for="Messege" />
+    <span asp-validation-for="Messege"></span>
+
+    <input type="submit" value="Отправить" />
+</form>

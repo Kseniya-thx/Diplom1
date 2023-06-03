@@ -23,10 +23,10 @@ namespace Diplom1.Controllers
                     var employees = new Person
                     {
                         Id = Convert.ToInt32(reader["id"]),
-                        Surname = reader["Фамилия"].ToString(),
-                        Name = reader["Имя"].ToString(),
-                        Otchestvo = reader["Отчество"].ToString(),
-                        Telephone = reader["Телефон"].ToString()
+                        Surname = reader["surename"].ToString(),
+                        Name = reader["name"].ToString(),
+                        Otchestvo = reader["otchestvo"].ToString(),
+                        Telephone = reader["telephone"].ToString()
                     };
 
                     person.Add(employees);

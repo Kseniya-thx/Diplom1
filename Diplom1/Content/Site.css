@@ -1,24 +1,111 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿* {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #e4e2e2;
+    font-family: 'Montserrat', sans-serif;
 }
 
+header {
+    width: 100%;
+    padding: 20px 15%;
+    color:black;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-bottom: 2px solid #000 ;
+}
+
+header .logo {
+
+        color: #000000;
+        font-weight:700;
+        font-size: 25px;
+
+ }
+
+header nav a {
+     color: #000000;
+     text-decoration: none;
+     margin-left: 10px;
+ }
+
+header nav a:hover {text-decoration:underline}
+
+footer {
+    margin-top:300px;
+    text-align:left;
+    width:100%;
+    padding: 25px 0;
+    color: #000000;
+    border-top: 2px solid #000;
+}
+
+main label {
+    width:100%;
+    margin-top: 10px;
+    display:block;
+}
+
+main input:not([type="submit"]) {
+    width: 90%;
+    padding: 10px 14px;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    outline: none;
+    margin-top: 7px;
+}
+
+    main input:not([type="submit"]) :focus {
+        border: 1px solid #ff0000;
+    }
+
+main input[type="submit"] {
+    width:40%;
+    padding: 10px 0;
+    text-align: center;
+    font-size:15px;
+    border-radius: 5px;
+    border: 0;
+    margin-top: 7px;
+    background: #ff6a00;
+    font-weight: bold;
+    color: #833904;
+    cursor:pointer;
+}
+
+    main input[type="submit"] :hover {
+        background: #d96614;
+    }
+
+    main form span {
+        color: #ff0000;
+        font-weight: bold;
+        display:block;
+        margin: 5px 0;
+
+    }
+
+
+
 /* Set padding to keep content from hitting the edges */
-.body-content {
+/*.body-content {
     padding-left: 15px;
     padding-right: 15px;
-}
+}*/
 
 /* Override the default bootstrap behavior where horizontal description lists 
    will truncate terms that are too long to fit in the left column 
 */
-.dl-horizontal dt {
+/*.dl-horizontal dt {
     white-space: normal;
-}
+}*/
 
 /* Set width on the form input elements since they're 100% wide by default */
-input,
+/*input,
 select,
 textarea {
     max-width: 280px;
-}
+}*/

@@ -1,0 +1,17 @@
+﻿
+
+@model Diplom1.Models.Base
+
+<h2>База знаний</h2>
+
+<h3>@Model.Question</h3>
+
+<dl class = "dl-horizontal">
+    <dt>Вопрос</dt>
+    <dd>@Model.Question1</dd>
+    <dt>Ответ</dt>
+    <dd>@Model.Answer</dd>
+</dl>
+
+@*<a href="/Bases/All">Часто задаваемые вопросы<</a>*@
+@Html.ActionLink("Часто задаваемые вопросы", "All")

@@ -43,10 +43,12 @@
         </nav>
     </header>
     <main>
+        <div class="container-fluid">
         @RenderBody()
+        </div>
     </main>
     <footer>
-        <p>&copy; @DateTime.Now.Year - База знаний</p>
+        <p class="text-center text-muted">&copy; @DateTime.Now.Year - База знаний</p>
     </footer>
     @*@Scripts.Render("~/bundles/jquery")
         @Scripts.Render("~/bundles/bootstrap")

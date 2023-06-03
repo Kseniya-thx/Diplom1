@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-
-namespace Diplom1.Models
+﻿namespace Diplom1.Models
 {
     public class Person
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
 
         public string Surname { get; set; }
 
@@ -15,6 +10,6 @@ namespace Diplom1.Models
 
         public string Otchestvo { get; set; }
 
-        public string telephone { get; set; }
+        public string Telephone { get; set; }
     }
 }

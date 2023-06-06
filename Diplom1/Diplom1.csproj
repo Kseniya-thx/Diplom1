@@ -169,6 +169,7 @@
     <Compile Include="Controllers\BasesController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +217,8 @@
     <Content Include="Views\Bases\Index.cshtml" />
     <Content Include="Views\Bases\All.cshtml" />
     <Content Include="Views\Contacts\Index.cshtml" />
+    <Content Include="Views\Person\Index.cshtml" />
+    <Content Include="Views\Bases\About.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

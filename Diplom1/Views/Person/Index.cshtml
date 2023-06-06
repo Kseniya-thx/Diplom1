@@ -1,0 +1,47 @@
+﻿@model  List<Diplom1.Models.Person>
+
+
+@{ ViewBag.Title = "Сотрудники компании"; }
+
+<div class="row">
+
+
+
+</div>
+
+<h2>Сотрудники</h2>
+
+<form method="get" class="mb-3">
+    <div class=" input-group">
+        <input class="form-control" asp-for="SerchTerm" />
+        <div class="input-group-addon">
+            <button type="submit" class="btn btn-primary">Поиск</button>
+        </div>
+    </div>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>Фамилия</th>
+            <th>Имя</th>
+            <th>Отчество</th>
+            <th>Телефон</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Surname</td>
+                <td>@item.Name</td>
+                <td>@item.Otchestvo</td>
+                <td>@item.Telephone</td>*
+            </tr>
+        }
+    </tbody>
+</table>
+
+

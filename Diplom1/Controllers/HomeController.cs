@@ -7,46 +7,35 @@ using Diplom1.Models;
 
 namespace Diplom1.Controllers
 {
-    public class HomeController : Controller
-    {
+    //public class HomeController : Controller
+    //{
 
-        private readonly MySqlConnection _connection = ConnectionManager.GetConnection();
+    //    private readonly MySqlConnection _connection = ConnectionManager.GetConnection();
 
-        public ActionResult Index()
-        {
-            var person = new List<Person>();
-            var command = new MySqlCommand("select * from employees", _connection);
-            using (var reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    var employees = new Person
-                    {
-                        Id = Convert.ToInt32(reader["id"]),
-                        Surname = reader["surename"].ToString(),
-                        Name = reader["name"].ToString(),
-                        Otchestvo = reader["otchestvo"].ToString(),
-                        Telephone = reader["telephone"].ToString()
-                    };
+    //    public ActionResult Index()
+    //    {
+    //        var person = new List<Person>();
+    //        var command = new MySqlCommand("select * from employees", _connection);
+    //        using (var reader = command.ExecuteReader())
+    //        {
+    //            while (reader.Read())
+    //            {
+    //                var employees = new Person
+    //                {
+    //                    Id = Convert.ToInt32(reader["id"]),
+    //                    Surname = reader["surename"].ToString(),
+    //                    Name = reader["name"].ToString(),
+    //                    Otchestvo = reader["otchestvo"].ToString(),
+    //                    Telephone = reader["telephone"].ToString()
+    //                };
 
-                    person.Add(employees);
-                }
-            }
+    //                person.Add(employees);
+    //            }
+    //        }
 
-            return View(person);
-        }
+    //        return View(person);
+    //    }
 
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-            return View();
-        }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
-    }
+    //}
 }

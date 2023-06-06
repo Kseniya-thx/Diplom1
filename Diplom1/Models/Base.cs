@@ -14,6 +14,10 @@ namespace Diplom1.Models
         public string Question1 { get; set; }
         [Display(Name = "Ответ")]
         public string Answer { get; set; }
+
+        public string About { get; set; }
+        
+        public string Info { get; set; }
         
     }
 }

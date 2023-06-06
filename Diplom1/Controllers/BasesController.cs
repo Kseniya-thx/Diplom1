@@ -3,13 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Diplom1.Components;
 using Diplom1.Models;
+using MySql.Data.MySqlClient;
 
 namespace Diplom1.Controllers
 {
     public class BasesController : Controller
     {
         // GET: Bases
+        public ActionResult About()
+        {
+            var bases = new Base
+            {
+                About = "О компании",
+                Info = "Государственное унитарное предприятие, работающее в области информатизации и информационного обеспечения органов государственной власти Санкт-Петербурга и других организаций, а также предоставления услуг в сфере создания и использования современных информационных и телекоммуникационных систем, средств и технологий"
+            };
+
+            return View("About", bases);
+            //return new ViewResult { };
+        }
         public ActionResult Index()
         {
             var bases = new Base
@@ -19,7 +32,9 @@ namespace Diplom1.Controllers
                 Answer = "Максименко Андрей Владимирович"
             };
 
-            return View("Index" ,bases);
+            
+
+            return View("Index", bases);
             //return new ViewResult { };
         }
 
@@ -44,5 +59,9 @@ namespace Diplom1.Controllers
 
             return View("All", basess);
         }
+
+       
+
+
     }
 }

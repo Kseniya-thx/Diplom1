@@ -2,6 +2,7 @@
 {
     public class Person
     {
+        public string SerchTerm { get; set; }
         public int Id { get; set; }
 
         public string Surname { get; set; }

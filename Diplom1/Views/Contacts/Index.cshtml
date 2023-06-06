@@ -6,20 +6,20 @@
 <h2>Обратная связь</h2>
 
 <form method="post" asp-cotroller="Contacts" asp-action="Check">
-    <label asp-for="Name">Name</label>
+    <label asp-for="Name"></label>
     <input asp-for="Name" />
     <span asp-validation-for="Name"></span>
 
-    <label asp-for="Surame"></label>
-    <input asp-for="Surame" />
+    <label asp-for="Surame" for="surname">Фамилия</label>
+    <input asp-for="Surame" id="surname" class="form-control"/>
     <span asp-validation-for="Surame"></span>
 
-    <label asp-for="Email"></label>
-    <input asp-for="Email" />
+    <label asp-for="Email" for="email">E-Mail</label>
+    <input asp-for="Email" id="email" class="form-control"/>
     <span asp-validation-for="Email"></span>
 
-    <label asp-for="Messege"></label>
-    <input asp-for="Messege" />
+    <label asp-for="Messege" for="message">Сообщение</label>
+    <textarea asp-for="Messege" id="message" class="form-control" style="width: 90%" rows="6"></textarea>
     <span asp-validation-for="Messege"></span>
 
     <input type="submit" value="Отправить" />

@@ -8,6 +8,15 @@
     @Html.ActionLink("Create New", "Create")
 </p>*@
 
+<form method="get" class="mb-3">
+    <div class=" input-group">
+        <input class="form-control" asp-for="SerchTerm" />
+        <div class="input-group-addon">
+            <button type="submit" class="btn btn-primary">Поиск</button>
+        </div>
+    </div>
+</form>
+
 <table class="table">
     <tr>
         <th>Номер вопроса

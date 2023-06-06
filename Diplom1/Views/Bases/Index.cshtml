@@ -1,6 +1,11 @@
 ﻿@model Diplom1.Models.Base
 
-<h3>База знаний</h3>
+
+<h1>Рабочий стол</h1>
+
+
+
+
 
 <h4>@Model.Question</h4>
 
@@ -15,3 +20,8 @@
 
 @*<a href="/Bases/All">Часто задаваемые вопросы<</a>*@
 @Html.ActionLink("Часто задаваемые вопросы", "All")
+
+
+<dl class=" dl-horizontal">
+    @Html.ActionLink("О компании", "About")
+</dl>

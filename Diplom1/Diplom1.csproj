@@ -168,6 +168,7 @@
     <Compile Include="Components\ConnectionManager.cs" />
     <Compile Include="Controllers\BasesController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
+    <Compile Include="Controllers\DepartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Global.asax.cs">
@@ -175,6 +176,7 @@
     </Compile>
     <Compile Include="Models\Base.cs" />
     <Compile Include="Models\Contact.cs" />
+    <Compile Include="Models\Depart.cs" />
     <Compile Include="Models\Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -219,6 +221,7 @@
     <Content Include="Views\Contacts\Index.cshtml" />
     <Content Include="Views\Person\Index.cshtml" />
     <Content Include="Views\Bases\About.cshtml" />
+    <Content Include="Views\Depart\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

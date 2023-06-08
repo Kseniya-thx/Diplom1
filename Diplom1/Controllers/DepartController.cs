@@ -4,6 +4,7 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 
@@ -11,7 +12,7 @@ namespace Diplom1.Controllers
 {
     public class DepartController : Controller
     {
-        public string SerchTerm { get; set; }
+        
 
         // GET: Person
         private readonly MySqlConnection _connection = ConnectionManager.GetConnection();
@@ -38,5 +39,8 @@ namespace Diplom1.Controllers
 
             return View(depart);
         }
+        
+    
+  
     }
 }

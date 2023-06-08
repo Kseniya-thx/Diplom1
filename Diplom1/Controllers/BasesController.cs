@@ -23,16 +23,24 @@ namespace Diplom1.Controllers
             return View("About", bases);
             //return new ViewResult { };
         }
+
+        
         public ActionResult Index()
         {
             var bases = new Base
             {
+                greeting = "Добро пожаловать в ИАЦ!",
                 Question = "Вопрос-ответ",
-                Question1 = "Как зовут Директора компании?",
-                Answer = "Максименко Андрей Владимирович"
+                Question1 = "С чего начать?",
+                Answer = "1. Список ваших коллег находится в разделе Сотрудники" ,
+                Answer2 = "2. Для просмотра вопросов можете зайти в раздел 'Часто задаваемые вопросы'",
+                Answer3 = "Желаем процветания и успехов вашим проектам!"
+                
+
+
             };
 
-            
+
 
             return View("Index", bases);
             //return new ViewResult { };
@@ -68,12 +76,8 @@ namespace Diplom1.Controllers
                     Question1 = "Узнать номер сотрудника",
                     Answer = "Зайти в раздел 'Сотрудники', там будет вся информация о сотрудниках"
                 },
-                new Base
-                {
-                    Question = "№5",
-                    Question1 = "Нужен пример заполнения документа",
-                    Answer = "В разделе 'Документы' вся интересующая информация"
-                },
+              
+
                 
             };
 

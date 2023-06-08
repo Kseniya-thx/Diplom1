@@ -18,6 +18,14 @@ namespace Diplom1.Models
         public string About { get; set; }
         
         public string Info { get; set; }
-        
+
+        public string greeting { get; set; }
+        public string Answer2 { get; set; }
+        public string Answer3 { get; set; }
+        public string Answer4 { get; set; }
+
+
+
+
     }
 }

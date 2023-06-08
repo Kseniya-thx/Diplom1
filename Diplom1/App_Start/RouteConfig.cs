@@ -19,6 +19,12 @@ namespace Diplom1
                 defaults: new { controller = "Bases", action = "All" }
             );
 
+            routes.MapRoute(
+              name: "AboutCompany",
+              url: "About",
+              defaults: new { controller = "Bases", action ="About"}
+              ) ;
+
 
             routes.MapRoute(
                 name: "Default",

@@ -60,10 +60,27 @@ namespace Diplom1.Controllers
         //    {
         //        employees = employees.Where(MySqlX => MySqlX.name.Contains(Personsearch) || MySqlX.Email.Contains(Personsearch));
         //    }
-            
+
         //    return View(await employees.AsNoTracking.ToListAsync());
         //}
 
- 
+        public ActionResult AddPerson()
+        {
+            return View();
+
+        }
+
+        public ActionResult EditPerson()
+        {
+            return View();
+
+        }
+
+        public ActionResult DeletePerson()
+        {
+            return RedirectToAction("Index");
+
+        }
+
     }
 }

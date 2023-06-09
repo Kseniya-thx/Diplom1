@@ -17,5 +17,17 @@ namespace Diplom1.Components
             return _connection;
         }
 
+        private static string ConnectionString
+        {
+            get
+            { return System.Configuration.ConfigurationManager.AppSettings["ConnectionString"]; }
+        }
+
+        public static string strConnect
+        {
+            get
+            { return System.Configuration.ConfigurationManager.ConnectionStrings[ConnectionString].ConnectionString; }
+        }
+
     }
 }

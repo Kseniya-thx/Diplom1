@@ -90,16 +90,25 @@ namespace Diplom1.Controllers
 
         public async  Task<ActionResult> DeletePerson(int? id)
         {
+            using (MySqlConnection connect = new MySqlConnection(ConnectionManager.strConnect))
             if (id != null) 
             {
-                //Person person = await  db.employees.FirstOrDefaultAsync(p => p.Id = id);
-                //if (person != null)
-                //{
-                //    db.employees.Remove(person);
-                //    await db
-                //}
-                
-            }
+                    string sql = "Delete from 'employeeys' Where'Id'= @Id";
+                    using (MySqlCommand cmd = new MySqlCommand(sql, connect))
+                    {
+                        cmd.Parameters.Add("Id", MySqlDbType.Int32).Value = id;
+                        connect.Open();
+                        return View();
+                    }
+
+                    //    Person person = await   .employees.FirstOrDefaultAsync(p => p.Id = id);
+                    //if (person != null)
+                    //{
+                    //    db.employees.Remove(person);
+                    //    await db
+                    //}
+
+                }
             return RedirectToAction("Index");
 
         }

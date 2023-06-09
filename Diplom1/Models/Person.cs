@@ -21,5 +21,10 @@ namespace Diplom1.Models
         public string Peronsearch { get; set; }
 
     }
- 
+
+    //public Persons() { }
+
+    //public Persons(int Id, string Surname, string Name, string Otchestvo, string Telephone) => this.Id
+
+
 }

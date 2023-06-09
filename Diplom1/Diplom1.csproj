@@ -169,6 +169,7 @@
     <Compile Include="Controllers\BasesController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\DepartController.cs" />
+    <Compile Include="Controllers\Filter\RequireBasicAuthentication.cs" />
     <Compile Include="Controllers\HeadsDepartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />

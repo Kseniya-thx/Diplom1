@@ -50,7 +50,6 @@ namespace Diplom1.Controllers
         }
 
         [HttpGet]
-
         public async Task<ActionResult> Index(string Personsearch)
         {
             ViewData["GetPersonSearch"] = Personsearch;

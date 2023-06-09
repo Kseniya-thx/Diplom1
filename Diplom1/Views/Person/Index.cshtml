@@ -4,9 +4,9 @@
 @{ ViewBag.Title = "Сотрудники компании"; }
 
 <form method="get" class="mb-3">
-    <div class=" input-group">
-        <input class="form-control" asp-for="SerchTerm" />
-        <div class="input-group-addon">
+    <div class=" row input-group">
+        <input  type="text" name="search" id="search"  class ="form-control" asp-for="SerchTerm" />
+        <div class="input-group-btn">
             <button type="submit" class="btn btn-primary">Поиск</button>
         </div>
     </div>

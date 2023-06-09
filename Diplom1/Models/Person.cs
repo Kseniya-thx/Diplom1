@@ -1,4 +1,6 @@
-﻿namespace Diplom1.Models
+﻿using System.Collections.Generic;
+
+namespace Diplom1.Models
 {
     public class Person
     {
@@ -12,5 +14,10 @@
         public string Otchestvo { get; set; }
 
         public string Telephone { get; set; }
+
+        public string Peronsearch { get; set; }
+
     }
+
+   
 }

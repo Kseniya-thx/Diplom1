@@ -169,7 +169,6 @@
     <Compile Include="Controllers\BasesController.cs" />
     <Compile Include="Controllers\ContactsController.cs" />
     <Compile Include="Controllers\DepartController.cs" />
-    <Compile Include="Controllers\Filter\RequireBasicAuthentication.cs" />
     <Compile Include="Controllers\HeadsDepartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
@@ -181,6 +180,8 @@
     <Compile Include="Models\Depart.cs" />
     <Compile Include="Models\HeadsDepart.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="PersonRepository.cs" />
+    <Compile Include="PersonService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

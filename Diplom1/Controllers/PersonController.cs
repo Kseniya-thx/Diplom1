@@ -12,12 +12,18 @@ namespace Diplom1.Controllers
 {
     public class PersonController : Controller
     {
-        public string SerchTerm { get; set; }
+        private readonly PersonService _personService;
+
+        public PersonController()
+        {
+            _personService = new PersonService();
+        }
+     
 
         // GET: Person
         private readonly MySqlConnection _connection = ConnectionManager.GetConnection();
 
-        public ActionResult Index()
+        public  async Task<ActionResult> Index()
         {
             var person = new List<Person>();
             var command = new MySqlCommand("select * from employees", _connection);
@@ -44,12 +50,17 @@ namespace Diplom1.Controllers
                 //    }
                 //}
             }
-            return View(person);
-           
+
             
+            return View(person);
+            
+            
+            var persons = await _personService.GetPersons();
+            
+            return View(persons);
+
         }
 
-<<<<<<< HEAD
         //[HttpGet]
 
         //public async Task<ActionResult> Index(string Personsearch)
@@ -66,10 +77,6 @@ namespace Diplom1.Controllers
         //}
 
         public ActionResult AddPerson()
-=======
-        [HttpGet]
-        public async Task<ActionResult> Index(string Personsearch)
->>>>>>> 37f878ab497d340b926c077ae6de9b6a3a9d0895
         {
             return View();
 
@@ -81,8 +88,18 @@ namespace Diplom1.Controllers
 
         }
 
-        public ActionResult DeletePerson()
+        public async  Task<ActionResult> DeletePerson(int? id)
         {
+            if (id != null) 
+            {
+                //Person person = await  db.employees.FirstOrDefaultAsync(p => p.Id = id);
+                //if (person != null)
+                //{
+                //    db.employees.Remove(person);
+                //    await db
+                //}
+                
+            }
             return RedirectToAction("Index");
 
         }

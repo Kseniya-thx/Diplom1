@@ -49,6 +49,7 @@ namespace Diplom1.Controllers
             
         }
 
+<<<<<<< HEAD
         //[HttpGet]
 
         //public async Task<ActionResult> Index(string Personsearch)
@@ -65,6 +66,10 @@ namespace Diplom1.Controllers
         //}
 
         public ActionResult AddPerson()
+=======
+        [HttpGet]
+        public async Task<ActionResult> Index(string Personsearch)
+>>>>>>> 37f878ab497d340b926c077ae6de9b6a3a9d0895
         {
             return View();
 

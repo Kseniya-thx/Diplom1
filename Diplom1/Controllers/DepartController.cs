@@ -7,18 +7,25 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using Diplom1.Controllers.Filter;
 
 namespace Diplom1.Controllers
 {
     public class DepartController : Controller
     {
-        
-
+     
         // GET: Person
         private readonly MySqlConnection _connection = ConnectionManager.GetConnection();
+        
         // GET: Depart
+        [RequireBasicAuthentication]
         public ActionResult Index()
         {
+            // Example of getting current username
+            var user = HttpContext.Session["Username"];
+            //-----------------------------------
+            
+            
             var depart = new List<Depart>();
             var command = new MySqlCommand("select * from departments", _connection);
             using (var reader = command.ExecuteReader())

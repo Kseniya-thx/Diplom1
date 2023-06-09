@@ -24,7 +24,7 @@ namespace Diplom1.Controllers
             //return new ViewResult { };
         }
 
-        
+
         public ActionResult Index()
         {
             var bases = new Base
@@ -32,10 +32,10 @@ namespace Diplom1.Controllers
                 greeting = "Добро пожаловать в ИАЦ!",
                 Question = "Вопрос-ответ",
                 Question1 = "С чего начать?",
-                Answer = "1. Список ваших коллег находится в разделе Сотрудники" ,
+                Answer = "1. Список ваших коллег находится в разделе Сотрудники",
                 Answer2 = "2. Для просмотра вопросов можете зайти в раздел 'Часто задаваемые вопросы'",
                 Answer3 = "Желаем процветания и успехов вашим проектам!"
-            
+
             };
 
 
@@ -74,16 +74,34 @@ namespace Diplom1.Controllers
                     Question1 = "Узнать номер сотрудника",
                     Answer = "Зайти в раздел 'Сотрудники', там будет вся информация о сотрудниках"
                 },
-              
 
-                
+
+
             };
 
             return View("All", basess);
         }
 
-       
 
 
+        public ActionResult AddMaterial()
+        {
+            return View();
+        
+        }
+
+        public ActionResult EditMaterial()
+        {
+            return View();
+
+        }
+
+        public ActionResult DeleteMaterial()
+        {
+            return RedirectToAction("Index");
+
+        }
     }
+
+    
 }

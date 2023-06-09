@@ -18,6 +18,5 @@ namespace Diplom1.Models
         public string Peronsearch { get; set; }
 
     }
-
-   
+ 
 }

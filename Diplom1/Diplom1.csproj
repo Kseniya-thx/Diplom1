@@ -225,6 +225,9 @@
     <Content Include="Views\Bases\About.cshtml" />
     <Content Include="Views\Depart\Index.cshtml" />
     <Content Include="Views\HeadsDepart\Index.cshtml" />
+    <Content Include="Views\Bases\AddMaterial.cshtml" />
+    <Content Include="Views\Bases\EditMaterial.cshtml" />
+    <Content Include="Views\Bases\DeleteMaterial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

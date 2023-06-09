@@ -24,8 +24,8 @@ namespace Diplom1.Models
         public string Answer3 { get; set; }
         public string Answer4 { get; set; }
 
-
-
+        public string NameMaterial { get; set; }
+        public string Materil { get; set; }
 
     }
 }

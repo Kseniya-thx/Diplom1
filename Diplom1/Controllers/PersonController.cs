@@ -49,20 +49,20 @@ namespace Diplom1.Controllers
             
         }
 
-        [HttpGet]
+        //[HttpGet]
 
-        public async Task<ActionResult> Index(string Personsearch)
-        {
-            ViewData["GetPersonSearch"] = Personsearch;
+        //public async Task<ActionResult> Index(string Personsearch)
+        //{
+        //    ViewData["GetPersonSearch"] = Personsearch;
 
-            var employees = new MySqlCommand("select * from employees", _connection);
-            if (!string.IsNullOrEmpty(Personsearch))
-            {
-                employees = employees.Where(MySqlX => MySqlX.name.Contains(Personsearch) || MySqlX.Email.Contains(Personsearch));
-            }
+        //    var employees = new MySqlCommand("select * from employees", _connection);
+        //    if (!string.IsNullOrEmpty(Personsearch))
+        //    {
+        //        employees = employees.Where(MySqlX => MySqlX.name.Contains(Personsearch) || MySqlX.Email.Contains(Personsearch));
+        //    }
             
-            return View(await employees.AsNoTracking.ToListAsync());
-        }
+        //    return View(await employees.AsNoTracking.ToListAsync());
+        //}
 
  
     }

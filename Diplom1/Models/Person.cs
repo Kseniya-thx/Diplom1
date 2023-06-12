@@ -18,13 +18,18 @@ namespace Diplom1.Models
 
         public string Telephone { get; set; }
 
-        public string Peronsearch { get; set; }
-
+        public int? Registrationid { get; set; }
+        public Registration Registration { get; set; }
     }
-
-    //public Persons() { }
-
-    //public Persons(int Id, string Surname, string Name, string Otchestvo, string Telephone) => this.Id
-
-
+    
+    public class Registration
+    {
+        public int id { get; set; }
+        public string registration { get; set; }
+        public ICollection<Person> Person { get; set; }
+        public Registration()
+        {
+            Person = new List<Person>();
+        }
+    }
 }

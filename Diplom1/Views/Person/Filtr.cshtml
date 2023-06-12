@@ -1,0 +1,54 @@
+﻿@model Diplom1.Models.PersonReg 
+@{
+    ViewBag.Title = "Каталог";
+}
+
+<h2>Каталог</h2>
+
+<p>
+    @Html.ActionLink("Добавить сотрудника", "Create")
+</p>
+
+<form method="get">
+    <div class=" form-inline">
+        <label class="control-label">Фамилия: </label>
+        @Html.DropDownList("surename", Model.Surename as SelectList,
+                            htmlAttributes: new { @class = "form-control" })
+        <label class="control-label">Фамилия: </label>
+        @Html.DropDownList("registration", Model.Registration as SelectList,
+                            htmlAttributes: new { @class = "form-control" })
+        <input type="submit" value="Фильтр" class="btn btn-default" />
+    </div>
+
+</form>
+
+<table>
+    <tr>
+        <th>Фамилия</th>
+        <th>Имя</th>
+        <th>Отчество</th>
+        <th>Телефон</th>
+        <th>Оформление</th>
+    </tr>
+    @foreach (var item in Model.Person)
+    { 
+<tr>
+    <td>
+        ( @item.Surname)
+    </td>
+    <td>
+        ( @item.Name)
+    </td>
+    <td>
+        ( @item.Otchestvo)
+    </td>
+    <td>
+        ( @item.Telephone)
+    </td>
+    <td>
+        ( @item.Registration.registration)
+    </td>
+</tr>
+    }
+</table>
+

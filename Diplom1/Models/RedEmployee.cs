@@ -5,11 +5,9 @@ using System.Web;
 
 namespace Diplom1.Models
 {
-    public class HeadsDepart
+    public class RedEmployee
     {
-        
         public int Id { get; set; }
-
-        public string FullName { get; set; }
+        public string registration { get; set; }
     }
 }

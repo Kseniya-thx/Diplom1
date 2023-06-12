@@ -1,9 +1,12 @@
 ﻿using Diplom1.Components;
+using Diplom1.Controllers.Filter;
 using Diplom1.Models;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
@@ -12,19 +15,27 @@ namespace Diplom1.Controllers
 {
     public class PersonController : Controller
     {
-        private readonly PersonService _personService;
-
-        public PersonController()
-        {
-            _personService = new PersonService();
-        }
-     
 
         // GET: Person
         private readonly MySqlConnection _connection = ConnectionManager.GetConnection();
-
-        public  async Task<ActionResult> Index()
+        private AppDBContent db = new AppDBContent();
+        private readonly DbContext _context;
+        public PersonController(DbContext context)
         {
+            _context = context;
+        }
+
+        //[RequireBasicAuthentication]
+
+        public   ActionResult Index()
+        {
+
+
+            // Example of getting current username
+            //var user = HttpContext.Session["Username"];
+            //-----------------------------------
+
+
             var person = new List<Person>();
             var command = new MySqlCommand("select * from employees", _connection);
             using (var reader = command.ExecuteReader())
@@ -42,75 +53,106 @@ namespace Diplom1.Controllers
 
                     person.Add(employees);
                 }
-                //{
-                //    if (!string.IsNullOrEmpty(search))
-                //    {
-                //        List<Person> employees = Person.SearchPerson(search);
-                //        return View(employees);
-                //    }
-                //}
+                
             }
 
-            
             return View(person);
-            
-            
-            var persons = await _personService.GetPersons();
-            
-            return View(persons);
 
+          
         }
 
-        //[HttpGet]
-
-        //public async Task<ActionResult> Index(string Personsearch)
-        //{
-        //    ViewData["GetPersonSearch"] = Personsearch;
-
-        //    var employees = new MySqlCommand("select * from employees", _connection);
-        //    if (!string.IsNullOrEmpty(Personsearch))
-        //    {
-        //        employees = employees.Where(MySqlX => MySqlX.name.Contains(Personsearch) || MySqlX.Email.Contains(Personsearch));
-        //    }
-
-        //    return View(await employees.AsNoTracking.ToListAsync());
-        //}
-
-        public ActionResult AddPerson()
+        public Task<ActionResult> Search(string SearchString)
         {
-            return View();
-
-        }
-
-        public ActionResult EditPerson()
-        {
-            return View();
-
-        }
-
-        public async  Task<ActionResult> DeletePerson(int? id)
-        {
-            using (MySqlConnection connect = new MySqlConnection(ConnectionManager.strConnect))
-            if (id != null) 
+            ViewData["Filtr"] = SearchString;
+            var per = from v in _context.Person
+                      select v;
+            if (!String.IsNullOrEmpty(SearchString))
             {
-                    string sql = "Delete from 'employeeys' Where'Id'= @Id";
-                    using (MySqlCommand cmd = new MySqlCommand(sql, connect))
-                    {
-                        cmd.Parameters.Add("Id", MySqlDbType.Int32).Value = id;
-                        connect.Open();
-                        return View();
-                    }
+                per = per.Where(d => d.name.Contains(SearchString));
+            }
+            return View(per);
+        }
+        public ActionResult Create()
+        {
+            return View();
+        }
 
-                    //    Person person = await   .employees.FirstOrDefaultAsync(p => p.Id = id);
-                    //if (person != null)
-                    //{
-                    //    db.employees.Remove(person);
-                    //    await db
-                    //}
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create([Bind(Include = "id,surename,name,otchestvo,telephone")] Person person)
+        {
 
-                }
+            if (ModelState.IsValid)
+            {
+                db.Person.Add(person);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(person);
+
+        }
+
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Person person = db.Person.Find(id);
+            if (person == null)
+            {
+                return HttpNotFound();
+            }
+            return View(person);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult Edit([Bind(Include = "id,surename,name,otchestvo,telephone")] Person person)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(person).State = (System.Data.Entity.EntityState)EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(person);
+        }
+
+        public ActionResult Delete(int? id)
+        {
+
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Person person = db.Person.Find(id);
+            if (person == null)
+            {
+                return HttpNotFound();
+            }
+            return View(person);
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+
+        public ActionResult DeleteConfirmed(int id)
+        {
+            Person person = db.Person.Find(id);
+            db.Person.Remove(person);
+            db.SaveChanges();
             return RedirectToAction("Index");
+        }
 
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
         }
 
     }

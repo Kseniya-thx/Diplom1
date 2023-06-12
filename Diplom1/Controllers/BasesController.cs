@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using Diplom1.Components;
@@ -11,6 +13,12 @@ namespace Diplom1.Controllers
 {
     public class BasesController : Controller
     {
+        private readonly DbContext _context;
+        public BasesController(DbContext context)
+        {
+            _context = context;
+        }
+
         // GET: Bases
         public ActionResult About()
         {
@@ -73,15 +81,16 @@ namespace Diplom1.Controllers
                     Question = "№4",
                     Question1 = "Узнать номер сотрудника",
                     Answer = "Зайти в раздел 'Сотрудники', там будет вся информация о сотрудниках"
-                },
+                }
 
 
-
-            };
+        };
+           
 
             return View("All", basess);
         }
 
+      
 
 
         public ActionResult AddMaterial()

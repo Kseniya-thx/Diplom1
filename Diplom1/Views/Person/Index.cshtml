@@ -1,18 +1,31 @@
-﻿@using Diplom1.Models; 
-@model  List<Diplom1.Models.Person>
+﻿@model  List<Diplom1.Models.Person>
 
 
 <h1>Сотрудники компании</h1>
 
-<form method="get" class="mb-3">
-    <div class=" row input-group">
-        <input  type="text" name="search" id="search"  class ="form-control" asp-for="SerchTerm" />
-        <div class="input-group-btn">
-            <button type="submit" class="btn btn-primary">Поиск</button>
-        </div>
+<form asp-action="Index" method="get">
+    <div class=" form-group">
+        <label for="SearchString">Поиск</label>
+        <input class="text" name="SearchString" value="@ViewData["Filtr"] " />
+        <input type="submit" value="Поиск" class="btn btn-primary" />
+        <!--<div class="input-group-addon">-->
+        @*<button type="submit" class="btn btn-primary">Поиск</button>*@
+        <!--</div>-->
     </div>
 </form>
+@*<form method="get">
+        <div class="form-inline">
+            <label class="control-label">Фамилия: </label>
+            @Html.DropDownList("surename", Model.Surname as SelectList,
+                        htmlAttributes: new { @class = "form-control" })
+            <label class="control-label">Имя: </label>
+            @Html.DropDownList("name", Model.Name as SelectList,
+                        htmlAttributes: new { @class = "form-control" })
+            <input type="submit" value="Фильтр" class="btn btn-default" />
+        </div>
 
+    </form>*@
+@Html.ActionLink("Добавить", "Create")
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -25,48 +38,33 @@
     </thead>
     <tbody>
         @foreach (var item in Model)
-        { 
-        <tr>
-            <td>
+        {
+            <tr>
+                <td>
 
-                @Html.DisplayFor(modelItem => item.Id)
+                    @Html.DisplayFor(modelItem => item.Id)
 
-            </td>
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Otchestvo)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Otchestvo)
+                </td>
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Surname)
-            </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Surname)
+                </td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Удалить", "Delete", new { id = item.Id })
+                </td>
 
 
-            <td>
-                @Html.DisplayFor(modelItem => item.Telephone)
-            </td>
+            </tr>
 
-            <td>
-                @Html.ActionLink("Редактирование", "EditPerson", new {  })
-            </td>
-            <td>
-                @Html.ActionLink("Добавление", "AddPerson", new {  })
-            </td>
-            <td>
-                @Html.ActionLink("Удаление", "DeletePerson", new {  })
-            </td>
-        </tr>
-            @*<tr>
-                <td>@item.Id</td>
-                <td>@item.Surname</td>
-                <td>@item.Name</td>
-                <td>@item.Otchestvo</td>
-                <td>@item.Telephone</td>*
-            </tr>*@
         }
     </tbody>
 </table>

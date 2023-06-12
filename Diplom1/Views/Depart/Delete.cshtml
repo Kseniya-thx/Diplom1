@@ -1,0 +1,41 @@
+﻿@using Diplom1.Models;
+@model Diplom1.Models.Depart
+@{
+    ViewBag.Title = "Удалить";
+}
+
+<h2>Delete</h2>
+
+<h3>Вы действительно хотите удалить это?</h3>
+<div>
+    <h4>Должности</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Name_Depart)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name_Depart)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Назад", "Index")
+        </div>
+    }
+</div>

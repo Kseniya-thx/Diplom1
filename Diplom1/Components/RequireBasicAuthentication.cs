@@ -27,7 +27,7 @@ namespace Diplom1.Controllers.Filter
                     .Split(':');
                 var user = new { Username = credentials[0], Password = credentials[1] };
                 
-                var command = new MySqlCommand("select * from vxod v, staff s where v.password = '" + user.Password + "' AND name = '" + user.Username + "'", _connection);
+                var command = new MySqlCommand("select * from vxod v, staff s where v.id = s.id AND v.password = '" + user.Password + "' AND name = '" + user.Username + "'", _connection);
                 using (var reader = command.ExecuteReader())
                 {
                     if (reader.HasRows)

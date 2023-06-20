@@ -60,108 +60,113 @@ namespace Diplom1.Controllers
             return View(headsdepart);
         }
 
-        public Task<ActionResult> Search(string SearchString)
-        {
-            ViewData["Filtr"] = SearchString;
-            var hdepat = from b in _context.Depart
-                         select b;
-            if (!String.IsNullOrEmpty(SearchString))
-            {
-                hdepat = hdepat.Where(d => d.fullname.Contains(SearchString));
-            }
-            return View(hdepat);
-        }
-
-        [HttpGet]
-
-        public ActionResult Create()
-        {
-
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,fullname")] HeadsDepart headsDepart)
-        {
-
-            if (ModelState.IsValid)
-            {
-                db.HeadsDeparts.Add(headsDepart);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(headsDepart);
-
-        }
-
-        [HttpGet]
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            HeadsDepart headsDepart = db.HeadsDeparts.Find(id);
-            if (headsDepart == null)
-            {
-                return HttpNotFound();
-            }
-            return View(headsDepart);
-        }
+      
 
 
 
 
-        public ActionResult Edit([Bind(Include = "Id,fullname")] HeadsDepart headsDepart)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(headsDepart).State = (System.Data.Entity.EntityState)EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(headsDepart);
-        }
+        //public Task<ActionResult> Search(string SearchString)
+        //{
+        //    ViewData["Filtr"] = SearchString;
+        //    var hdepat = from b in _context.Depart
+        //                 select b;
+        //    if (!String.IsNullOrEmpty(SearchString))
+        //    {
+        //        hdepat = hdepat.Where(d => d.fullname.Contains(SearchString));
+        //    }
+        //    return View(hdepat);
+        //}
 
-        [HttpGet]
+        //[HttpGet]
+
+        //public ActionResult Create()
+        //{
+
+        //    return View();
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "Id,fullname")] HeadsDepart headsDepart)
+        //{
+
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.HeadsDeparts.Add(headsDepart);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(headsDepart);
+
+        //}
+
+        //[HttpGet]
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    HeadsDepart headsDepart = db.HeadsDeparts.Find(id);
+        //    if (headsDepart == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(headsDepart);
+        //}
 
 
-        public ActionResult Delete(int? id)
-        {
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            HeadsDepart headsDepart = db.HeadsDeparts.Find(id);
-            if (headsDepart == null)
-            {
-                return HttpNotFound();
-            }
-            return View(headsDepart);
-        }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //public ActionResult Edit([Bind(Include = "Id,fullname")] HeadsDepart headsDepart)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(headsDepart).State = (System.Data.Entity.EntityState)EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(headsDepart);
+        //}
 
-        
-        public ActionResult DeleteConfirmed(int id)
-        {
-            HeadsDepart headsDepart = db.HeadsDeparts.Find(id);
-            db.HeadsDeparts.Remove(headsDepart);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //[HttpGet]
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+
+        //public ActionResult Delete(int? id)
+        //{
+
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    HeadsDepart headsDepart = db.HeadsDeparts.Find(id);
+        //    if (headsDepart == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(headsDepart);
+        //}
+
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+
+
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    HeadsDepart headsDepart = db.HeadsDeparts.Find(id);
+        //    db.HeadsDeparts.Remove(headsDepart);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
     }
 }

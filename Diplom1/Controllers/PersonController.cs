@@ -15,6 +15,9 @@ namespace Diplom1.Controllers
 {
     public class PersonController : Controller
     {
+        public int pageSize = 10;
+        public int showPages = 15;
+        public int count = 0;
 
         // GET: Person
         private readonly MySqlConnection _connection = ConnectionManager.GetConnection();
@@ -25,6 +28,30 @@ namespace Diplom1.Controllers
             _context = context;
         }
 
+        public ViewResult Index(string sortOrder, int page = 1)
+        {
+            string sortName = null;
+            System.Web.Helpers.SortDirection sortDir = System.Web.Helpers.SortDirection.Ascending;
+            
+            UserRepository rep = new UserRepository();
+            UsersGrid users = new UsersGrid
+            { 
+                Persons = rep.List(sortName, sortDir, page, pageSize, out count),
+                PagingInfo = new PagingInfo
+                {
+                    currentPage = page,
+                    itemsPerPage = pageSize,
+                    totalItems = count,
+                    showPages = showPages
+                },
+                SortingInfo = new SortingInfo
+                {
+                    currentOrder = sortName,
+                    currentDirection = sortDir
+                }
+            };
+            return View(users);
+        }
         //[RequireBasicAuthentication]
 
         public   ActionResult Index()
@@ -36,124 +63,133 @@ namespace Diplom1.Controllers
             //-----------------------------------
 
 
-            var person = new List<Person>();
-            var command = new MySqlCommand("select * from employees", _connection);
-            using (var reader = command.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    var employees = new Person
-                    {
-                        Id = Convert.ToInt32(reader["id"]),
-                        Surname = reader["surename"].ToString(),
-                        Name = reader["name"].ToString(),
-                        Otchestvo = reader["otchestvo"].ToString(),
-                        Telephone = reader["telephone"].ToString()
-                    };
+            //var person = new List<Person>();
+            //var command = new MySqlCommand("select * from employees", _connection);
+            //using (var reader = command.ExecuteReader())
+            //{
+            //    while (reader.Read())
+            //    {
+            //        var employees = new Person
+            //        {
+            //            Id = Convert.ToInt32(reader["id"]),
+            //            Surname = reader["surename"].ToString(),
+            //            Name = reader["name"].ToString(),
+            //            Otchestvo = reader["otchestvo"].ToString(),
+            //            Telephone = reader["telephone"].ToString()
+            //        };
 
-                    person.Add(employees);
-                }
+            //        person.Add(employees);
+            //    }
                 
-            }
+            //}
 
-            return View(person);
+            return View(/*person*/);
 
           
         }
 
-        public Task<ActionResult> Search(string SearchString)
+        public ActionResult Edit(int id)
         {
-            ViewData["Filtr"] = SearchString;
-            var per = from v in _context.Person
-                      select v;
-            if (!String.IsNullOrEmpty(SearchString))
-            {
-                per = per.Where(d => d.name.Contains(SearchString));
-            }
-            return View(per);
-        }
-        public ActionResult Create()
-        {
+            UserRepository rep = new UserRepository();
+            Person person = rep.FetchByID(id);
+            if (person == null) return HttpNotFound();
+            TempData["referrer"] = ControllerContext.RouteData.Values["referrer"];
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,surename,name,otchestvo,telephone")] Person person)
-        {
+        //public Task<ActionResult> Search(string SearchString)
+        //{
+        //    ViewData["Filtr"] = SearchString;
+        //    var per = from v in _context.Person
+        //              select v;
+        //    if (!String.IsNullOrEmpty(SearchString))
+        //    {
+        //        per = per.Where(d => d.name.Contains(SearchString));
+        //    }
+        //    return View(per);
+        //}
+        //public ActionResult Create()
+        //{
+        //    return View();
+        //}
 
-            if (ModelState.IsValid)
-            {
-                db.Person.Add(person);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(person);
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "id,surename,name,otchestvo,telephone")] Person person)
+        //{
 
-        }
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Person.Add(person);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(person);
 
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Person person = db.Person.Find(id);
-            if (person == null)
-            {
-                return HttpNotFound();
-            }
-            return View(person);
-        }
+        //}
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //public ActionResult Edit(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Person person = db.Person.Find(id);
+        //    if (person == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(person);
+        //}
 
-        public ActionResult Edit([Bind(Include = "id,surename,name,otchestvo,telephone")] Person person)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(person).State = (System.Data.Entity.EntityState)EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(person);
-        }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
 
-        public ActionResult Delete(int? id)
-        {
+        //public ActionResult Edit([Bind(Include = "id,surename,name,otchestvo,telephone")] Person person)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.Entry(person).State = (System.Data.Entity.EntityState)EntityState.Modified;
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View(person);
+        //}
 
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Person person = db.Person.Find(id);
-            if (person == null)
-            {
-                return HttpNotFound();
-            }
-            return View(person);
-        }
+        //public ActionResult Delete(int? id)
+        //{
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Person person = db.Person.Find(id);
+        //    if (person == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(person);
+        //}
 
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Person person = db.Person.Find(id);
-            db.Person.Remove(person);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Person person = db.Person.Find(id);
+        //    db.Person.Remove(person);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+        //protected override void Dispose(bool disposing)
+        //{
+        //    if (disposing)
+        //    {
+        //        db.Dispose();
+        //    }
+        //    base.Dispose(disposing);
+        //}
 
     }
 }

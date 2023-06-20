@@ -372,6 +372,8 @@
     <Compile Include="Models\Person.cs" />
     <Compile Include="Models\PersonReg.cs" />
     <Compile Include="Models\RedEmployee.cs" />
+    <Compile Include="Models\UserRepository.cs" />
+    <Compile Include="Models\UsersGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -467,7 +469,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>61239</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>https://localhost:44379/</IISUrl>
+          <IISUrl>http://localhost:44379/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

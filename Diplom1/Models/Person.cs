@@ -6,6 +6,15 @@ namespace Diplom1.Models
 {
     public class Person
     {
+        public Person(int Id, string Surname, string Name, string Otchestvo, string Telephone)
+        {
+            this.Id = Id;
+            this.Surname = Surname;
+            this.Name = Name;
+            this.Otchestvo = Otchestvo;
+            this.Telephone = Telephone;
+        }
+
         [Key]
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }

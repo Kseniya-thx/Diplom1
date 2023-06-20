@@ -39,7 +39,7 @@ namespace Diplom1.Controllers
             
             
             var depart = new List<Depart>();
-            var command = new MySqlCommand("select * from departments", _connection);
+            var command = new MySqlCommand("select * from departments, heads_of_depart Where departments.id = heads_of_depart", _connection);
             using (var reader = command.ExecuteReader())
 
             {
@@ -49,7 +49,7 @@ namespace Diplom1.Controllers
                     {
                         Id = Convert.ToInt32(reader["id"]),
                         Name_Depart = reader["name_depart"].ToString(),
-                       
+                        
                     };
 
                     depart.Add(departt);

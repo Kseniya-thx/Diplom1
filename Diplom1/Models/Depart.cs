@@ -12,4 +12,6 @@ namespace Diplom1.Models
         public string Name_Depart { get; set; }
 
     }
+
+   
 }
